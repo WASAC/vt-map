@@ -36,7 +36,7 @@ RUN npm cache clean && npm install n -g && n stable \
 
 # Install vt-map
 RUN cd /tmp/src \
-    && git clone https://github.com/narwassco/vt-map.git \
+    && git clone https://github.com/WASAC/vt-map.git \
     && cd vt-map \
     && npm install
 
