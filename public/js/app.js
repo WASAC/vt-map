@@ -1,18 +1,18 @@
-mapboxgl.accessToken = 'pk.eyJ1IjoibmFyd2Fzc2NvIiwiYSI6ImNrOXIxOTFleTBvNGIzZ3A4b3docmE5cHQifQ.BqsnWbWZ2NwJZDWyOVWjXA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiamluLWlnYXJhc2hpIiwiYSI6ImNrOHV1Nm9mdTAzMGIzdHNmbDBmZzllNnIifQ.J-ZRzlVGLH6Qm2UbCmYWeA';
 
 $(function(){
     this.map = new mapboxgl.Map({
         container: 'map', // container id
         style: './style.json',
-        center: [35.87063, -1.08551], // starting position [lng, lat]
-        zoom: 13, // starting zoom
+        center: [29.915923665876335, -2.00623424231469], // starting position [lng, lat]
+        zoom: 8, // starting zoom
         hash:true,
         attributionControl: false,
     });
 
     var customerData;
     $.ajaxSetup({ async: false });
-    $.getJSON('./meter.geojson', function(json){
+    $.getJSON('./wss.geojson', function(json){
         customerData = json;
     })
     $.ajaxSetup({ async: true });
@@ -26,15 +26,15 @@ $(function(){
             var feature = customerData.features[i];
             // console.log(feature.properties)
             // handle queries with different capitalization than the source data by calling toLowerCase()
-            ['connno', 'serialno'].forEach(v=>{
+            ['wss_name', 'district','po_name'].forEach(v=>{
                 var target = feature.properties[v];
                 if (!target){
                     return;
                 }
                 if (matched(target,query)) {
-                    feature['place_name'] = `${feature.properties.customer}, ${feature.properties.connno}, ${feature.properties.serialno}, ${feature.properties.village}`;
+                    feature['place_name'] = `${feature.properties.wss_id}-${feature.properties.wss_name}, ${feature.properties.po_name}, ${feature.properties.district}`;
                     feature['center'] = feature.geometry.coordinates;
-                    feature['place_type'] = ['meter'];
+                    feature['place_type'] = ['wss'];
                     matchingFeatures.push(feature);
                 }
             })
@@ -47,7 +47,7 @@ $(function(){
             accessToken: mapboxgl.accessToken,
             localGeocoder: forwardGeocoder,
             zoom: 16,
-            placeholder: 'CONN NO, S/N, Name',
+            placeholder: 'Name of WSS, PO, District',
             mapboxgl: mapboxgl
         }),
         'top-left'
@@ -81,13 +81,10 @@ $(function(){
         .addTo(this.map);
     }
 
-    this.map.on('click', 'meter', createPopup);
-    this.map.on('click', 'flow meter', createPopup);
-    this.map.on('click', 'valve', createPopup);
-    this.map.on('click', 'washout', createPopup);
-    this.map.on('click', 'firehydrant', createPopup);
-    this.map.on('click', 'tank', createPopup);
-    this.map.on('click', 'intake', createPopup);
-    this.map.on('click', 'wtp', createPopup);
+    this.map.on('click', 'connection', createPopup);
+    this.map.on('click', 'chamber', createPopup);
+    this.map.on('click', 'reservoir', createPopup);
+    this.map.on('click', 'pumping-station', createPopup);
+    this.map.on('click', 'watersource', createPopup);
     this.map.on('click', 'pipeline', createPopup);
 })

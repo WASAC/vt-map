@@ -13,8 +13,8 @@ module.exports = {
     },
     layers : [
         {
-          name: 'meter',
-          geojsonFileName: export_dir + '/public/meter.geojson',
+          name: 'wss',
+          geojsonFileName: export_dir + '/public/wss.geojson',
           select:`
           SELECT row_to_json(featurecollection) AS json FROM (
             SELECT
@@ -23,26 +23,24 @@ module.exports = {
             FROM (
               SELECT
               'Feature' AS type,
-              ST_AsGeoJSON(ST_TRANSFORM(x.geom,4326))::json AS geometry,
+              ST_AsGeoJSON(ST_CENTROID(x.geom))::json AS geometry,
               row_to_json((
                 SELECT p FROM (
                   SELECT
-                  x.meterid as fid,
-                  CASE WHEN x.connno=-1 THEN NULL ELSE LPAD(CAST(x.connno as text), 4, '0') || x.zonecd END as connno,
-                  x.serialno,
-                  b.name as customer,
-                  c.name as village
+                  x.wss_id, 
+                  x.wss_name, 
+                  a.district,
+                  c.po_name
                 ) AS p
               )) AS properties
-              FROM meter x
-              INNER JOIN metertype a
-              ON x.metertypeid = a.metertypeid
-              LEFT JOIN customer b
-              ON x.zonecd = b.zonecd
-              AND x.connno = b.connno
-              LEFT JOIN village c
-			        on b.villageid = c.villageid
-              WHERE NOT ST_IsEmpty(x.geom) AND x.metertypeid = 1
+              FROM wss x
+              INNER JOIN district a
+              ON x.dist_id = a.dist_id
+              LEFT JOIN management b
+              ON x.wss_id = b.wss_id
+              INNER JOIN private_operator c
+              ON b.po_id = c.po_id
+              WHERE NOT ST_IsEmpty(x.geom)
             ) AS feature
           ) AS featurecollection
           `
