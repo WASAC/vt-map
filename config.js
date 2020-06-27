@@ -15,7 +15,7 @@ module.exports = {
       tiles: export_dir + '/public/tiles'
     },
     mbtiles: export_dir + '/rwss.mbtiles',
-    minzoom: 6,
+    minzoom: 9,
     maxzoom: 16,
     layers : [
         {
@@ -34,7 +34,7 @@ module.exports = {
                     SELECT t FROM (
                       SELECT
                         16 as maxzoom,
-                        8 as minzoom
+                        11 as minzoom
                     ) AS t
                   )) AS tippecanoe,
                   row_to_json((
@@ -121,7 +121,7 @@ module.exports = {
                 SELECT t FROM (
                   SELECT
                     16 as maxzoom,
-                    13 as minzoom
+                    14 as minzoom
                 ) AS t
               )) AS tippecanoe,
               row_to_json((
@@ -169,7 +169,7 @@ module.exports = {
                 SELECT t FROM (
                   SELECT
                     16 as maxzoom,
-                    10 as minzoom
+                    12 as minzoom
                 ) AS t
               )) AS tippecanoe,
               row_to_json((
@@ -217,7 +217,7 @@ module.exports = {
                 SELECT t FROM (
                   SELECT
                     16 as maxzoom,
-                    10 as minzoom
+                    12 as minzoom
                 ) AS t
               )) AS tippecanoe,
               row_to_json((
@@ -267,7 +267,7 @@ module.exports = {
                   SELECT t FROM (
                     SELECT
                       16 as maxzoom,
-                      10 as minzoom
+                      12 as minzoom
                   ) AS t
                 )) AS tippecanoe,
                 row_to_json((
@@ -388,7 +388,7 @@ module.exports = {
                 SELECT t FROM (
                   SELECT
                     16 as maxzoom,
-                    6 as minzoom
+                    9 as minzoom
                 ) AS t
               )) AS tippecanoe,
               row_to_json((
@@ -427,7 +427,7 @@ module.exports = {
                 SELECT t FROM (
                   SELECT
                     16 as maxzoom,
-                    6 as minzoom
+                    10 as minzoom
                 ) AS t
               )) AS tippecanoe,
               row_to_json((
