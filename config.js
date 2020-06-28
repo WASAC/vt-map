@@ -41,8 +41,6 @@ module.exports = {
                     SELECT p FROM (
                       SELECT
                         x.pipe_id as fid,
-                        x.wss_id,
-                        a.wss_name,
                         x.material,
                         x.pipe_size,
                         x.pressure,
@@ -52,8 +50,6 @@ module.exports = {
                     ) AS p
                   )) AS properties
                 FROM pipeline x
-                LEFT JOIN wss a
-                ON x.wss_id = a.wss_id
                 WHERE NOT ST_IsEmpty(x.geom)
               ) AS feature
             ) AS featurecollection
@@ -83,11 +79,9 @@ module.exports = {
                   SELECT
                   	x.connection_id as fid, 
                     x.connection_type,
-                    x.wss_id, 
-                    a.wss_name,
                     x.no_user, 
                     x.water_meter, 
-                    b.status, 
+                    a.status, 
                     x.observation, 
                     x.elevation, 
                     x.input_date, 
@@ -96,10 +90,8 @@ module.exports = {
                 ) AS p
               )) AS properties
               FROM water_connection x
-              LEFT JOIN wss a
-               ON x.wss_id = a.wss_id
-              INNER JOIN status b
-              ON x.status = b.code
+              INNER JOIN status a
+              ON x.status = a.code
               WHERE NOT ST_IsEmpty(x.geom)
             ) AS feature
           ) AS featurecollection
@@ -129,11 +121,9 @@ module.exports = {
                   SELECT
                   	x.chamber_id as fid, 
                     x.chamber_type, 
-                    x.wss_id,  
-                    a.wss_name,
                     x.chamber_size, 
                     x.material, 
-                    b.status, 
+                    a.status, 
                     x.observation, 
                     x.elevation, 
                     x.is_breakpressure, 
@@ -144,10 +134,8 @@ module.exports = {
                 ) AS p
               )) AS properties
               FROM chamber x
-              LEFT JOIN wss a
-               ON x.wss_id = a.wss_id
-              INNER JOIN status b
-              ON x.status = b.code
+              INNER JOIN status a
+              ON x.status = a.code
               WHERE NOT ST_IsEmpty(x.geom)
             ) AS feature
           ) AS featurecollection
@@ -176,12 +164,10 @@ module.exports = {
                 SELECT p FROM (
                   SELECT
                   	x.watersource_id as fid, 
-                    x.wss_id, 
-                    a.wss_name,
                     x.source_type, 
                     x.discharge,  
                     x.water_meter, 
-                    b.status, 
+                    a.status, 
                     x.observation, 
                     x.elevation, 
                     x.chlorination_unit, 
@@ -192,10 +178,8 @@ module.exports = {
                 ) AS p
               )) AS properties
               FROM watersource x
-              LEFT JOIN wss a
-               ON x.wss_id = a.wss_id
-              INNER JOIN status b
-              ON x.status = b.code
+              INNER JOIN status a
+              ON x.status = a.code
               WHERE NOT ST_IsEmpty(x.geom)
             ) AS feature
           ) AS featurecollection
@@ -225,12 +209,10 @@ module.exports = {
                   SELECT
                     x.reservoir_id as fid, 
                     x.reservoir_type,
-                    x.wss_id, 
-                    a.wss_name,
                     x.capacity, 
                     x.material, 
                     x.water_meter, 
-                    b.status, 
+                    a.status, 
                     x.observation, 
                     x.elevation, 
                     x.is_breakpressure, 
@@ -242,10 +224,8 @@ module.exports = {
                 ) AS p
               )) AS properties
               FROM reservoir x
-              LEFT JOIN wss a
-               ON x.wss_id = a.wss_id
-              INNER JOIN status b
-              ON x.status = b.code
+              INNER JOIN status a
+              ON x.status = a.code
               WHERE NOT ST_IsEmpty(x.geom) 
             ) AS feature
           ) AS featurecollection
@@ -274,9 +254,7 @@ module.exports = {
                   SELECT p FROM (
                     SELECT
                       x.pumpingstation_id as fid, 
-                      x.wss_id, 
-                      a.wss_name,
-                      b.status, 
+                      a.status, 
                       x.head_pump, 
                       x.power_pump, 
                       x.discharge_pump, 
@@ -299,10 +277,8 @@ module.exports = {
                   ) AS p
                 )) AS properties
                 FROM pumping_station x
-                LEFT JOIN wss a
-                 ON x.wss_id = a.wss_id
-                INNER JOIN status b
-                ON x.status = b.code
+                INNER JOIN status a
+                ON x.status = a.code
                 WHERE NOT ST_IsEmpty(x.geom)
               ) AS feature
             ) AS featurecollection
@@ -396,16 +372,12 @@ module.exports = {
                 SELECT
                   x.wss_id, 
                   x.wss_name, 
-                  x.dist_id, 
-                  a.district,
                   x.wss_type, 
                   x.status, 
                   x.description
                 ) AS p
               )) AS properties
               FROM wss x
-              INNER JOIN district a
-              ON x.dist_id = a.dist_id
               WHERE NOT ST_IsEmpty(x.geom)
             ) AS feature
           ) AS featurecollection
