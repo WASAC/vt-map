@@ -1,6 +1,9 @@
 # vt-map
 This is a simple tool to create vector tile map on Github pages.
 
+## Design of vectortiles
+You can see vectortiles' design for `WASAC` from this [wiki](https://github.com/WASAC/vt-map/wiki/Vector-Tile-Design-for-WASAC).
+
 ## Installation
 ### tippenacanoe
 This module uses [`tippecanoe`](https://github.com/mapbox/tippecanoe) to convert geojson files to mbtiles. Please make sure to install it before running.
