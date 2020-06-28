@@ -16,7 +16,7 @@ module.exports = {
     },
     mbtiles: export_dir + '/rwss.mbtiles',
     minzoom: 9,
-    maxzoom: 16,
+    maxzoom: 15,
     layers : [
         {
             name: 'pipeline',
@@ -33,7 +33,7 @@ module.exports = {
                   row_to_json((
                     SELECT t FROM (
                       SELECT
-                        16 as maxzoom,
+                        15 as maxzoom,
                         11 as minzoom
                     ) AS t
                   )) AS tippecanoe,
@@ -70,7 +70,7 @@ module.exports = {
               row_to_json((
                 SELECT t FROM (
                   SELECT
-                    16 as maxzoom,
+                    15 as maxzoom,
                     15 as minzoom
                 ) AS t
               )) AS tippecanoe,
@@ -112,7 +112,7 @@ module.exports = {
               row_to_json((
                 SELECT t FROM (
                   SELECT
-                    16 as maxzoom,
+                    15 as maxzoom,
                     14 as minzoom
                 ) AS t
               )) AS tippecanoe,
@@ -156,7 +156,7 @@ module.exports = {
               row_to_json((
                 SELECT t FROM (
                   SELECT
-                    16 as maxzoom,
+                    15 as maxzoom,
                     12 as minzoom
                 ) AS t
               )) AS tippecanoe,
@@ -200,7 +200,7 @@ module.exports = {
               row_to_json((
                 SELECT t FROM (
                   SELECT
-                    16 as maxzoom,
+                    15 as maxzoom,
                     12 as minzoom
                 ) AS t
               )) AS tippecanoe,
@@ -246,7 +246,7 @@ module.exports = {
                 row_to_json((
                   SELECT t FROM (
                     SELECT
-                      16 as maxzoom,
+                      15 as maxzoom,
                       12 as minzoom
                   ) AS t
                 )) AS tippecanoe,
@@ -363,7 +363,7 @@ module.exports = {
               row_to_json((
                 SELECT t FROM (
                   SELECT
-                    16 as maxzoom,
+                    15 as maxzoom,
                     9 as minzoom
                 ) AS t
               )) AS tippecanoe,
@@ -398,7 +398,7 @@ module.exports = {
               row_to_json((
                 SELECT t FROM (
                   SELECT
-                    16 as maxzoom,
+                    15 as maxzoom,
                     10 as minzoom
                 ) AS t
               )) AS tippecanoe,
