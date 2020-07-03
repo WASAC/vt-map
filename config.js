@@ -370,11 +370,8 @@ module.exports = {
               row_to_json((
                 SELECT p FROM (
                 SELECT
-                  x.wss_id, 
-                  x.wss_name, 
-                  x.wss_type, 
-                  x.status, 
-                  x.description
+                  x.wss_id,  
+                  x.wss_type
                 ) AS p
               )) AS properties
               FROM wss x
