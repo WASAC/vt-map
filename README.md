@@ -1,11 +1,16 @@
 # vt-map
+![GitHub](https://img.shields.io/github/license/narwassco/vt-map)
+![Docker Cloud Automated build](https://img.shields.io/docker/cloud/automated/narwassco/vt-map)
+![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/narwassco/vt-map)
+[![Gitter](https://badges.gitter.im/narwassco/community.svg)](https://gitter.im/narwassco/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 This is a simple tool to create vector tile map on Github pages.
 
 ## Design of vectortiles
 You can see vectortiles' design for `WASAC` from this [wiki](https://github.com/WASAC/vt-map/wiki/Vector-Tile-Design-for-WASAC).
 
 ## Installation
-### tippenacanoe
+### tippecanoe
 This module uses [`tippecanoe`](https://github.com/mapbox/tippecanoe) to convert geojson files to mbtiles. Please make sure to install it before running.
 
 for MacOS
@@ -81,7 +86,7 @@ npm run deploy
 # License
 
 This source code under the repository is licensed by 
-MIT license. You can use it freely for your purposes.
+`MIT license`. You can use it freely for your purposes.
 
 However, these data under [public](./public) is owned and maintained by [Water and Sanitation Corporation (WASAC)(https://www.wasac.rw) in Rwanda. It is under a [Creative Commons Attribution 4.0 International
 License](http://creativecommons.org/licenses/by/4.0/), which is different from main repository. You can use this data freely, but please mention our credit `©WASAC,Ltd.` on attribution of your web application.
