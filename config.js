@@ -14,7 +14,7 @@ module.exports = {
     ghpages:{
       tiles: export_dir + '/public/tiles'
     },
-    mbtiles: export_dir + '/rwss.mbtiles',
+    mbtiles: export_dir + '/data/rwss.mbtiles',
     minzoom: 8,
     maxzoom: 14,
     layers : [
