@@ -4,6 +4,8 @@
 ![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/narwassco/vt-map)
 [![Gitter](https://badges.gitter.im/narwassco/community.svg)](https://gitter.im/narwassco/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
+This repository is no longer available. Its functionality shifted to [WASAC/vt](https://github.com/WASAC/vt) repository.
+
 This is a simple tool to create vector tile map on Github pages.
 
 ## Design of vectortiles
